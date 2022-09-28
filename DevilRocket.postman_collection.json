@@ -1,0 +1,988 @@
+{
+	"info": {
+		"_postman_id": "b0e8ed55-ef96-4e68-bc3a-243fc0261d15",
+		"name": "DevilRocket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17703178"
+	},
+	"item": [
+		{
+			"name": "Positive",
+			"item": [
+				{
+					"name": "auth-controller",
+					"item": [
+						{
+							"name": "register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"terem\",\r\n  \"password\": \"123Rxgdn_#\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/register",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Take token and id\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.collectionVariables.set(\"tokenUser\", jsonData.token);\r",
+											"    pm.collectionVariables.set(\"idUser\", jsonData.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"Fvfdsdswwwww\",\r\n  \"password\": \"123Rxgdn_#\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/auth",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user-data-controller",
+					"item": [
+						{
+							"name": "post personal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"Роман\",\r\n  \"lastName\": \"Мировиченко\",\r\n  \"thirdName\": \"Рабинович\",\r\n  \"phoneNumber\": \"71721849314\",\r\n  \"emailAddress\": \"roma2222@gmail.com\",\r\n  \"address\": \"Заельцовская 5А\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/personal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"personal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get personal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/personal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"personal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "advert-controller",
+					"item": [
+						{
+							"name": "post advert",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Рома/Pictures/2.png"
+										},
+										{
+											"key": "json",
+											"value": "{\n    \"name\": \"мелнцвц\",\n    \"category\": \"CLOTHES\",\n    \"price\": 4300\n  }",
+											"contentType": "application/json",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/advert",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"advert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get advert",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Take id product\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.collectionVariables.set(\"idProduct\", jsonData[0].id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/advert",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"advert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "advertId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/advert/{{idProduct}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"advert",
+										"{{idProduct}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "advert",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/advert/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"advert",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "balance-controller",
+					"item": [
+						{
+							"name": "deposit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/balance/deposit?amount=50000",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"balance",
+										"deposit"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "50000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "withdraw",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/balance/withdraw?amount=1000",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"balance",
+										"withdraw"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "1000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "balance",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/balance",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"balance"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "rent-controller",
+					"item": [
+						{
+							"name": "auth second user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Take token and id\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.collectionVariables.set(\"tokenUser\", jsonData.token);\r",
+											"     pm.collectionVariables.set(\"idUserSecond\", jsonData.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"terem\",\r\n  \"password\": \"123Rxgdn_#\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/auth",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rentStart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/advert/{{idProduct}}/rentStart?days=1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"advert",
+										"{{idProduct}}",
+										"rentStart"
+									],
+									"query": [
+										{
+											"key": "days",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rentEnd",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/{{idUser}}/advert/{{idProduct}}/rentEnd",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"{{idUser}}",
+										"advert",
+										"{{idProduct}}",
+										"rentEnd"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Negative",
+			"item": [
+				{
+					"name": "registrationN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Egor\",\r\n  \"password\": \"User\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrationN2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Ivan\",\r\n  \"password\": \"User123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrationN3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Sasha\",\r\n  \"password\": \"  \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authorizationN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Sasha\",\r\n  \"password\": \"  \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authorizationN2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Ivan\",\r\n  \"password\": \"User123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tokenUser",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idUser",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idProduct",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idUserSecond",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
